@@ -30,6 +30,5 @@ def handle_message(message: classmethod) -> None:
 
     bot.send_message(chat_id=message.from_user.id, text=''.join(response['choices'][0]['text']))
 
-
-
+    
 bot.polling(none_stop=True)
