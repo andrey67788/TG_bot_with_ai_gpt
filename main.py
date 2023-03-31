@@ -17,7 +17,6 @@ bot = tb.TeleBot(bot_api_key)
 def handle_message(message: classmethod) -> None:
     with open(history_file_path, 'a', encoding='utf=8') as file:
         file.write(f'USER {message.from_user.first_name}: {message.text}'+'\n')
-
     response = ai.Completion.create(
         model='text-davinci-003',
         prompt=message.text,
@@ -27,7 +26,6 @@ def handle_message(message: classmethod) -> None:
         frequency_penalty=0.5,
         presence_penalty=0.0
     )
-
     bot.send_message(chat_id=message.from_user.id, text=''.join(response['choices'][0]['text']))
 
     
